@@ -1,0 +1,127 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #d0d6c1;
+    margin: 0;
+    padding: 0;
+    padding-top: 120px; /* Adiciona um padding-top para compensar a altura do header */
+}
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.card {
+    background:#000000;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    height: 150px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.card-name, .card-type, .card-number, .card-expiration {
+    margin-bottom: 10px;
+}
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+button {
+    background-color: #2a85f0;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #0044cc;
+}
+
+/* Estilos do Header */
+.header {
+    background-color: #5e7d5d;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.logo {
+    height: 100px;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: bold;
+}
+
+.nav a:hover {
+    text-decoration: underline;
+}
+
+.buttons .btn {
+    margin-left: 10px;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.buttons .btn-primary {
+    background-color: white;
+    color: #5e7d5d;
+    font-weight: bold;
+}
+
+.buttons .btn-primary:hover {
+    background-color: #5e7d5d;
+    color: white;
+}
+
+.button {
+    background-color: #d0d6c1;
+    color: #2a2e31;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #96b985;
+}

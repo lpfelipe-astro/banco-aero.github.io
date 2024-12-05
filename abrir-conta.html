@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abra sua Conta | Banco Aero</title>
+    <link rel="shortcut icon" href="img-docs/aero-log.ico" type="image/x-icon">
+    <link rel="stylesheet" href="abra-sua-conta/script/abrir-conta.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-top">
+            <img src="img-docs/aero-log.ico" alt="Logo Banco Aero" class="logo">
+            <nav class="nav">
+                <a href="index.html#servicos">Serviços</a>
+                <a href="homeconnect.html">ConnectAero</a>
+                <a href="index.html#ajuda">Ajuda</a>
+                <a href="time-aero.html">Time Aero</a>
+                <a href="index.html#emprestimos">Empréstimos</a> <!-- Link para a seção de serviços -->
+            </nav>
+            <div class="buttons">
+                <a href="conta.html" class="button">Acesse sua conta</a>
+                <a href="abrir-conta.html" class="button">Abra sua conta</a>
+            </div>
+        </div>
+    </header>
+
+<main>
+    <div class="container">
+        <h2>Crie seu Cartão</h2>
+        
+        <!-- Formulário para inserir os dados do cartão -->
+        <form id="cardForm">
+            <label for="cardName">Nome no Cartão</label>
+            <input type="text" id="cardName" placeholder="Seu nome no cartão" required>
+
+            <button type="submit">Criar Cartão</button>
+        </form>
+
+        <h3>Cartão Criado:</h3>
+        <div class="card" id="cardDisplay">
+            <div class="card-name" id="cardDisplayName">Seu Nome</div>
+            <div class="card-number" id="cardDisplayNumber">#### #### #### ####</div>
+            
+            <!-- Flexbox para validade e tipo do cartão -->
+            <div class="card-header">
+                <div class="card-expiration" id="cardDisplayExpiration">MM/AAAA</div>
+                <div class="card-type" id="cardDisplayType">Tipo: Crédito, Débito</div>
+            </div>
+
+            <img src="abra-sua-conta/chip/chip.jfif" width="50px" height="50px" alt="Imagem do chip do cartão">
+        </div>
+    </div>
+</main>
+<script src="abra-sua-conta/script/abrir-conta.js"></script>
+</body>
+</html>

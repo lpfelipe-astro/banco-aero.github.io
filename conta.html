@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Sua Conta | Banco Aero</title>
+    <link rel="shortcut icon" href="img-docs/aero-log.ico" type="image/x-icon">
+    <link rel="stylesheet" href="conta/script/conta.css">
+</head>
+<body>
+    <header class="header">
+        <h1>Banco Aero</h1>
+        <div>
+            <span>Olá, Usuário!</span>
+            <img src="conta/img/botao-de-notificacoes.png" alt="Notificações" class="notific"> <span>Notificações</span>
+            <img src="conta/img/engrenagem.png" alt="Configurações" class="notific"> <span>Configurações</span>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="balance">
+            <h2>Saldo Disponível: <span id="saldo">R$ 10.000,00</span></h2>
+        </div>
+
+        <div class="flex-container">
+            <div class="flex-item cards">
+                <h2 class="section-title">Cartões</h2>
+                <p>Limite Utilizado: R$ 3.000,00</p>
+                <p>Saldo Disponível: R$ 7.000,00</p>
+            </div>
+
+            <div class="flex-item finances">
+                <h2 class="section-title">Finanças Multi-Banco</h2>
+                <p>Informações financeiras de múltiplos bancos...</p>
+            </div>
+
+            <div class="flex-item insurance">
+                <h2 class="section-title">Seguros</h2>
+                <p>Opções de seguro de vida e residencial...</p>
+            </div>
+        </div>
+
+        <div class="transacoes">
+            <h3>Faça uma transação:</h3>
+            <button onclick="mostrarDeposito()">Depositar</button>
+            <button onclick="mostrarRetirada()">Retirar</button>
+        </div>
+
+        <div id="formulario-deposito" class="formulario oculto">
+            <h3>Depositar Dinheiro</h3>
+            <input type="number" id="valor-deposito" placeholder="Valor para depositar" min="0" />
+            <button onclick="depositar()">Depositar</button>
+            <button onclick="fecharFormulario('formulario-deposito')">Cancelar</button>
+        </div>
+
+        <div id="formulario-retirada" class="formulario oculto">
+            <h3>Retirar Dinheiro</h3>
+            <input type="number" id="valor-retirada" placeholder="Valor para retirar" min="0" />
+            <button onclick="retirar()">Retirar</button>
+            <button onclick="fecharFormulario('formulario-retirada')">Cancelar</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+          <h2 class="footer-title">Banco Aero</h2>
+          <p class="footer-slogan">Agência: Modernidade, Segurança, Conexão.</p>
+          <div class="footer-info">
+            <p>📍 <strong>Endereço:</strong> Av. Central, 1234 - Centro, São Paulo, SP</p>
+            <p>📞 <strong>Atendimento:</strong> 0800 123 4567 | WhatsApp: (11) 98765-4321</p>
+            <p>🔒 <strong>Segurança garantida:</strong> Seus dados, protegidos sempre.</p>
+          </div>
+        </div>
+      </footer>
+    <script src="conta/script/conta.js"></script>
+</body>
+</html>

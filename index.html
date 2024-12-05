@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco Aero | Seu banco ecológico</title>
+    <link rel="shortcut icon" href="img-docs/aero-log.ico" type="image/x-icon">
+<style>
+/* Estilos do Header */
+.header {
+    background-color: #5e7d5d;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.logo {
+    height: 100px;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+
+}
+
+.nav a:hover {
+    text-decoration: underline;
+}
+
+.buttons .btn {
+    margin-left: 10px;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.buttons .btn-primary {
+    background-color: white;
+    color: #5e7d5d;
+}
+
+.buttons .btn-primary:hover {
+    background-color: #5e7d5d;
+    color: white;
+}
+
+/* Estilos das imagens do carrossel */
+.mySlides img {
+    position: relative;
+    z-index: 50;
+    width: 100%;
+    height: auto;
+    max-height: 650px;
+    display: block;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #5e7d5d, #d0d6c1, #96b985, #2a2e31);
+    background-size: 500%, 100%;
+    animation: anima 5s infinite linear alternate;
+}
+
+/* Estilo para os cartões */
+.member {
+    width: 300px;
+    text-align: center;
+    margin: 20px;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #2a2e31;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.descricao {
+    margin-top: 15px;
+    padding: 10px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 50px 20px;
+}
+
+/* Estilização do Menu Hambúrguer */
+.menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 35px;
+    height: 25px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.menu-toggle .bar {
+    background-color: white;
+    height: 3px;
+    width: 100%;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle:hover {
+    transform: scale(1.1);
+}
+
+.mobile-nav {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(94, 125, 93, 0.95);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: translateY(-20px);
+    padding-top: 60px;
+}
+
+.mobile-nav.show {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.mobile-nav a {
+    color: white;
+    text-decoration: none;
+    margin: 15px 0;
+    font-size: 1.2rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.mobile-nav a:hover {
+    color: #d0d6c1;
+    transform: scale(1.1);
+}
+
+strong{
+    color: #ffff;
+}
+.txt-desc{
+    color: #ffff;
+}
+/* Responsividade */
+@media (max-width: 768px) {
+    .header-top {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logo {
+        height: 80px;
+    }
+
+    .nav {
+        display: none;
+    }
+
+    .buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn {
+        margin: 10px 0;
+    }
+
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .member {
+        width: 90%;
+        margin: 15px 0;
+    }
+
+    .banner {
+        max-height: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        height: 60px;
+    }
+
+    .banner {
+        max-height: 300px;
+    }
+
+    .member {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .descricao {
+        font-size: 0.9rem;
+    }
+}
+
+
+/* Estilo para o fundo escuro ao abrir o menu */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998; /* Fica abaixo do menu */
+    display: none;
+}
+.overlay.show {
+    display: block;
+}
+
+/* Ajuste no mobile-nav para exibir com efeito */
+.mobile-nav {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background-color: rgba(94, 125, 93, 0.95);
+    z-index: 999;
+    padding: 10px 0;
+    transition: transform 0.3s ease-in-out;
+}
+
+.mobile-nav.show {
+    display: flex;
+}
+
+.card {
+    width: 200px;
+    height: 300px;
+}
+
+h1 {
+    text-align: center;
+    color: #ffff;
+    margin-top: 120px;  /* Ajuste a margem superior */
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.member3 {
+    width: 400px;
+    height: 250px;
+    text-align:left ;
+    margin: 20px;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #2a2e31;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.member2 {
+    width: 400px;
+    height: 250px;
+    text-align:left ;
+    margin: 20px;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #2a2e31;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.button {
+    background-color: #d0d6c1;
+    color: #2a2e31;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+}
+.button:hover {
+    background-color: #96b985;
+}
+
+        /* Estilos do Header */
+        .header {
+            background-color: #5e7d5d;
+            padding: 10px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .logo {
+            height: 100px;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+    
+        }
+
+        .nav a:hover {
+            text-decoration: underline;
+        }
+
+        .buttons .btn {
+            margin-left: 10px;
+            padding: 5px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .buttons .btn-primary {
+            background-color: white;
+            color: #5e7d5d;
+        }
+
+        .buttons .btn-primary:hover {
+            background-color: #5e7d5d;
+            color: white;
+        }
+
+.connect {
+    color: #ffff;
+}
+.connect:hover{
+    color:#d0d6c1
+}
+.connect::after{
+    color:aqua
+}
+
+.footer {
+    background-color: #2a2e31; /* Azul escuro */
+    color: #ffffff;
+    text-align: center;
+    padding: 20px 15px;
+  }
+  
+  .footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .footer-title {
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+  }
+  
+  .footer-slogan {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+  
+  .footer-info p {
+    margin: 10px 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  
+  .footer-info a {
+    color: #00bfff; /* Azul claro */
+    text-decoration: none;
+  }
+  
+  .footer-info a:hover {
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <header class="header">
+        <div class="header-top">
+            <img src="img-docs/aero-log.ico" alt="Logo Banco Aero" class="logo">
+            <nav class="nav">
+                <a href="#servicos">Serviços</a>
+                <a href="homeconnect.html">ConnectAero</a>
+                <a href="#ajuda">Ajuda</a>
+                <a href="time-aero.html">Time Aero</a>
+                <a href="#emprestimos">Empréstimos</a> <!-- Link para a seção de serviços -->
+            </nav>
+            <div class="buttons">
+                <a href="conta.html" class="button">Acesse sua conta</a>
+            <a href="abrir-conta.html" class="button">Abra sua conta</a>
+            </div>
+    </header>
+    
+    <main>
+        <div class="mySlides">
+            <a href="abrir-conta.html"><img class="banner" src="home/imagens/img-carrossel/bn1.png"></a>
+        </div>
+        <div class="mySlides">
+            <a href="index.html#emprestimos"><img class="banner" src="home/imagens/img-carrossel/bn2.png"></a>
+        </div>
+        <div class="mySlides">
+            <img class="banner" src="home/imagens/img-carrossel/bn3.png">
+        </div>
+        <div class="mySlides">
+            <a href="homeconnect.html"><img class="banner" src="home/imagens/img-carrossel/bn4.png"></a>
+        </div>
+        <br><br>
+
+        <h1>Serviços</h1>
+
+        <div class="container" id="servicos">
+            <div class="member">
+                <div class="cartao"></div>
+                <div class="descricao">
+                    <p><strong>Cartão Standart</strong></p>
+                    <p> <img src="home/imagens/img-cards/card1.png" class="card" alt="Cartão Aero Standart"> </p>
+                    <p> <div class="txt-desc">Este é a opção básica dos cartões Aero, ideal para clientes que buscam por uma experiência bancária moderna e sustentável. </div></p>
+                </div>
+            </div>
+            <div class="member">
+                <div class="cartao"></div>
+                <div class="descricao">
+                    <p><strong>Cartão Enterprise</strong></p>
+                    <p> <img src="home/imagens/img-cards/card2.png" class="card" alt="Cartão Aero Empresarial"></p>
+                    <p> <div class="txt-desc">Cartão corporativo, desenvolvido para empresas que valorizam a inovação tecnológica e responsabilidade ambiental. </div> </p>
+                </div>
+            </div>
+            <div class="member">
+                <div class="cartao"></div>
+                <div class="descricao">
+                    <p><strong>Cartão Aero Black</strong></p>
+                    <p> <img src="home/imagens/img-cards/card3.png" class="card" alt="Cartão Aero Black"></p>
+                    <p><div class="txt-desc">Cartão destinado a clientes que buscam exclusividade, inúmeros benefícios e compromisso com a sustentabilidade. </div></p>
+                </div>
+            </div>
+            <div class="member">
+                <div class="cartao"></div>
+                <div class="descricao">
+                    <p><strong>Cartão Platinum</strong></p>
+                    <p> <img src="home/imagens/img-cards/card4.png" alt="Cartão Aero Platinum" class="card"></p>
+                    <p><div class="txt-desc">Destinado para clientes que desejam benefícios máximos, exclusividade e compromisso com a sustentabilidade.</div></p>
+                </div>
+            </div>
+        </div>
+
+        <h1 id="emprestimos">Tipos de Empréstimos</h1>
+
+        <div class="container">
+            <div class="member2">
+                <div class="cartao"></div>
+                <div class="descricao">
+                    <p><h2><strong>Empréstimo Eco</strong></h2></p>
+                    <p> <div class="txt-desc">O Empréstimo Eco disponibiliza taxas mais baixas para projetos sustentáveis, como a instalação de painéis solares, com taxas que podem chegar a 7% ao ano. Além de parte do valor da taxa ser destinado a instituições de caridade de escolha opcional do cliente.</div></p>
+                </div>
+            </div>
+
+                <div class="member2">
+                    <div class="cartao"></div>
+                    <div class="descricao">
+                        <p><h2><strong>Empréstimo Regular</strong></h2></p>
+                        <p> <div class="txt-desc">Uma categoria focada em Empréstimos comuns, como o Consignado, Pessoal, Financiamento, Antecipação do 13º e vários outros. Todos com taxa de 30% ao ano.</div></p>
+                    </div>
+                </div>
+
+                <div class="member3">
+                    <div class="cartao"></div>
+                    <div class="descricao">
+                        <p><h2><strong>Empréstimo com garantia de imóvel</strong></h2></p>
+                        <p> <div class="txt-desc">Uma categoria na qual caso você possua um imóvel residencial ou comercial, você pode usá-lo como garantia e conseguir um empréstimo de forma rápida e sem problemas, tendo como principal vantagem, juros menores que outros empréstimos disponíveis no mercado. Mas este empréstimo só é autorizado para valores superiores à R$ 150.000,00.</div></p>
+                    </div>
+                </div>
+
+        </div>
+
+        <h1> ConnectAero</h1>
+        <div class="container">
+        <div class="member3">
+            <div class="cartao"></div>
+            <div class="descricao">
+                <p><h2><strong>O que é o ConnectAero?</strong></h2></p>
+                <p> <div class="txt-desc">Uma rede social especializada em investimentos, onde os clientes podem discutir estratégias, trocar ideias e aprender juntos; Os clientes podem conectar-se com seus amigos e familiares dentro do aplicativo do banco, compartilhando dicas financeiras e apoiando-se mutuamente.</div></p>
+                <p><strong><a class="connect" href="/connectaero/homeconnect.html">Acesse o ConnectAero</a></strong></p>
+            </div>
+         </div>
+        </div>
+
+        <h1 id="ajuda">Ajuda</h1>
+        <div class="container">
+        <iframe class="member2"width="560" height="315" src="https://www.youtube.com/embed/n91FJroED7w?si=gF5HGMFp-j9xnUt7" 
+        title="YouTube video player" 
+        rameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        referrerpolicy="strict-origin-when-cross-origin" 
+        allowfullscreen></iframe>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <div class="footer-content">
+          <h2 class="footer-title">Banco Aero</h2>
+          <p class="footer-slogan">Agência: Modernidade, Segurança, Conexão.</p>
+          <div class="footer-info">
+            <p>📍 <strong>Endereço:</strong> Av. Central, 1234 - Centro, São Paulo, SP</p>
+            <p>📞 <strong>Atendimento:</strong> 0800 123 4567 | WhatsApp: (11) 98765-4321</p>
+            <p>🔒 <strong>Segurança garantida:</strong> Seus dados, protegidos sempre.</p>
+          </div>
+        </div>
+      </footer>
+    <script>
+        var interval = 2000;
+var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
+    }
+    myIndex++;
+    if (myIndex > slides.length) {myIndex = 1}    
+    slides[myIndex-1].style.display = "block";  
+    setTimeout(carousel, interval);    
+}
+
+    </script>
+</body>
+</html>
