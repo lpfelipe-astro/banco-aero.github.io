@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco Aero | Seu banco ecológico</title>
+    <link rel="shortcut icon" href="img-docs/aero-log.ico" type="image/x-icon">
+<style>
+/* Estilos do Header */
+.header {
+    background-color: #5e7d5d;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.logo {
+    height: 100px;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+
+}
+
+.nav a:hover {
+    text-decoration: underline;
+}
+
+.buttons .btn {
+    margin-left: 10px;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.buttons .btn-primary {
+    background-color: white;
+    color: #5e7d5d;
+}
+
+.buttons .btn-primary:hover {
+    background-color: #5e7d5d;
+    color: white;
+}
+
+/* Estilos das imagens do carrossel */
+.mySlides img {
+    position: relative;
+    z-index: 50;
+    width: 100%;
+    height: auto;
+    max-height: 650px;
+    display: block;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #5e7d5d, #d0d6c1, #96b985, #2a2e31);
+    background-size: 500%, 100%;
+    animation: anima 5s infinite linear alternate;
+}
+
+/* Estilo para os cartões */
+.member {
+    width: 300px;
+    text-align: center;
+    margin: 20px;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #2a2e31;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.descricao {
+    margin-top: 15px;
+    padding: 10px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 50px 20px;
+}
+
+/* Estilização do Menu Hambúrguer */
+.menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 35px;
+    height: 25px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.menu-toggle .bar {
+    background-color: white;
+    height: 3px;
+    width: 100%;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle:hover {
+    transform: scale(1.1);
+}
+
+.mobile-nav {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(94, 125, 93, 0.95);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: translateY(-20px);
+    padding-top: 60px;
+}
+
+.mobile-nav.show {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.mobile-nav a {
+    color: white;
+    text-decoration: none;
+    margin: 15px 0;
+    font-size: 1.2rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.mobile-nav a:hover {
+    color: #d0d6c1;
+    transform: scale(1.1);
+}
+
+strong{
+    color: #ffff;
+}
+.txt-desc{
+    color: #ffff;
+}
+/* Responsividade */
+@media (max-width: 768px) {
+    .header-top {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logo {
+        height: 80px;
+    }
+
+    .nav {
+        display: none;
+    }
+
+    .buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn {
+        margin: 10px 0;
+    }
+
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .member {
+        width: 90%;
+        margin: 15px 0;
+    }
+
+    .banner {
+        max-height: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        height: 60px;
+    }
+
+    .banner {
+        max-height: 300px;
+    }
+
+    .member {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .descricao {
+        font-size: 0.9rem;
+    }
+}
+
+
+/* Estilo para o fundo escuro ao abrir o menu */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998; /* Fica abaixo do menu */
+    display: none;
+}
+.overlay.show {
+    display: block;
+}
+
+/* Ajuste no mobile-nav para exibir com efeito */
+.mobile-nav {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background-color: rgba(94, 125, 93, 0.95);
+    z-index: 999;
+    padding: 10px 0;
+    transition: transform 0.3s ease-in-out;
+}
+
+.mobile-nav.show {
+    display: flex;
+}
+
+.card {
+    width: 200px;
+    height: 300px;
+}
+
+h1 {
+    text-align: center;
+    color: #ffff;
+    margin-top: 120px;  /* Ajuste a margem superior */
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.member3 {
+    width: 400px;
+    height: 250px;
+    text-align:left ;
+    margin: 20px;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #2a2e31;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.member2 {
+    width: 400px;
+    height: 250px;
+    text-align:left ;
+    margin: 20px;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #2a2e31;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.button {
+    background-color: #d0d6c1;
+    color: #2a2e31;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+}
+.button:hover {
+    background-color: #96b985;
+}
+
+        /* Estilos do Header */
+        .header {
+            background-color: #5e7d5d;
+            padding: 10px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .logo {
+            height: 100px;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+    
+        }
+
+        .nav a:hover {
+            text-decoration: underline;
+        }
+
+        .buttons .btn {
+            margin-left: 10px;
+            padding: 5px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .buttons .btn-primary {
+            background-color: white;
+            color: #5e7d5d;
+        }
+
+        .buttons .btn-primary:hover {
+            background-color: #5e7d5d;
+            color: white;
+        }
+
+.connect {
+    color: #ffff;
+}
+.connect:hover{
+    color:#d0d6c1
+}
+.connect::after{
+    color:aqua
+}
+
+.footer {
+    background-color: #2a2e31; /* Azul escuro */
+    color: #ffffff;
+    text-align: center;
+    padding: 20px 15px;
+  }
+  
+  .footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .footer-title {
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+  }
+  
+  .footer-slogan {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+  
+  .footer-info p {
+    margin: 10px 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  
+  .footer-info a {
+    color: #00bfff; /* Azul claro */
+    text-decoration: none;
+  }
+  
+  .footer-info a:hover {
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <header class="header">
+        <div class="header-top">
+            <img src="img-docs/aero-log.ico" alt="Logo Banco Aero" class="logo">
+            <nav class="nav">
+                <a href="img-docs/aero-log.ico">Serviços</a>
+                <a href="homeconnect.html">ConnectAero</a>
+                <a href="#ajuda">Ajuda</a>
+                <a href="time-aero.html">Time Aero</a>
+                <a href="#emprestimos">Empréstimos</a> <!-- Link para a seção de serviços -->
+            </nav>
+            <div class="buttons">
+                <a href="conta.html" class="button">Acesse sua conta</a>
+            <a href="abrir-conta.html" class="button">Abra sua conta</a>
+            </div>
+    </header>
+    
+    <main>
+
+        <h1> Referências</h1>
+        <div class="container">
+        <div class="member3">
+            <div class="cartao"></div>
+            <div class="descricao">
+                <p><h2><strong>Referências   </strong></h2></p>
+                <p> <div class="txt-desc">Nós utilizamos como referência, os seguintes sites:</div></p>
+                <p> <strong> <a class="connect" href="https://inter.co"> Banco inter</a></strong></p>
+                <p> <strong> <a class="connect" href="https://www.itau.com.br"> Banco Itaú </a></strong></p>
+                <p><strong><a class="connect" href="https://www.bb.com.br/site/"> Banco do Brasil</a></strong></p>
+            </div>
+         </div>
+        </div>
+
+    </main>
+    
+    <footer class="footer">
+        <div class="footer-content">
+          <h2 class="footer-title">Banco Aero</h2>
+          <p class="footer-slogan">Agência: Modernidade, Segurança, Conexão.</p>
+          <div class="footer-info">
+            <p>📍 <strong>Endereço:</strong> Av. Central, 1234 - Centro, São Paulo, SP</p>
+            <p>📞 <strong>Atendimento:</strong> 0800 123 4567 | WhatsApp: (11) 98765-4321</p>
+            <p>🔒 <strong>Segurança garantida:</strong> Seus dados, protegidos sempre.</p>
+          </div>
+        </div>
+      </footer>
+
+</body>
+</html>
