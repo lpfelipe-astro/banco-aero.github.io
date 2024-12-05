@@ -5,6 +5,10 @@ body {
     padding: 0;
     color: #2A2E31;
 }
+.tamanho{
+    height: 20px;
+    width: 40px;
+}
 .header {
     background-color: #5E7D5D;
     color: white;
